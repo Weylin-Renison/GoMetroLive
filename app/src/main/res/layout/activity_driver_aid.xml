@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gometro.gometrolivedev.DriverAidActivity"
+    android:keepScreenOn="true">
+
+    <FrameLayout
+        android:id="@+id/fLayDAActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+    <com.mapbox.mapboxsdk.views.MapView
+        android:id="@+id/mvDAMap"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/fLayDAActionBar"
+        mapbox:mapid="wprenison.nbmehmgo"
+        mapbox:accessToken="sk.eyJ1Ijoid3ByZW5pc29uIiwiYSI6ImVkZGUyMzdlYWJmMTYxZWNlOWE3MGI3ZGM3ZTc4NWI5In0.I68vxId1DHnntpguAwK8Tg"/>
+
+    <FrameLayout
+        android:id="@+id/fLayDAMainContent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/fLayDAActionBar">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fLayDAButtonDrawerContent"
+        android:layout_width="300dp"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/fLayDAActionBar"
+        android:layout_alignParentRight="true"
+        android:visibility="gone">
+
+    </FrameLayout>
+
+</RelativeLayout>

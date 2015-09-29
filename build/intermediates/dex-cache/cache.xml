@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-511aaf813a0a0157098199b6a371d4b55ec6a1c8.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-a7f8696ebfcaf658e464e377f21c359453d536ee.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.4.0/a0c195f14cefc7597e0bebf22c3e7b43920dcf4/okhttp-urlconnection-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0a0c195f14cefc7597e0bebf22c3e7b43920dcf4">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.4.0-09383fe37d3c44c82a83a1477eeeba3419ea841c.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.mapbox.mapboxsdk/mapbox-android-sdk/0.7.4/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4bd64ebaab7edb0bccbb031dbdb7b1a7239d58f7">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-2ceec2f76243e49a42de47b0f74a48b082a4bc92.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-b40c22166b32f1295f87ce70012cfff2c26f54a4.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-c1366746e77f47ef647c3a38c739343a0ce7c181.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.vividsolutions/jts/1.13/3ccfb9b60f04d71add996a666ceb8902904fd805/jts-1.13.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3ccfb9b60f04d71add996a666ceb8902904fd805">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/jts-1.13-4f4e08df87f17d6361da54903b622260c6e53671.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-a1ee0624dbc9166da53b51e57ccc080f7658fae9.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-1dacb7e9949a05a3c78c9e1485761a756d0517bf.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.jakewharton/disklrucache/2.0.2/93b399470e72c0bc8cb52379943b63c9aa586cd8/disklrucache-2.0.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="93b399470e72c0bc8cb52379943b63c9aa586cd8">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/disklrucache-2.0.2-76b1f8fd5d1fe2308552b49367f6a0b977e013d2.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-7a1c580b066f1281aa9ac4a5aef38ccaa380ffd9.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-cd67766f30ad5c66ac218b59aa614c7e79f01fff.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/libs/android-async-http-1.4.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f70e680861fdf9449819003e7799a4e9aca047f8">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.3-830dca74fcdf1104e7ee7d51ba4ae31fccc79650.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-c4996b9035592beac6b026bf75c55443d69dabef.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-2564ed48d0a88e337246402058dd47005b79ff9b.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-162629fdbcdd67e9ab07cc46037816a121a3c8b4.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-ab9b0dbd4843c909eb2b760f4bd84dd4d9be1728.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-61dc1d288538078040742b6c00c2294df67f5240.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0-a7f1acb1798c033fe4bf5b6db4eed0b227681362.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-6c7f0cde755556c0390812e27f0c34da88a24417.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-34584634a79e84f06c1b541d9a95912f88bed461.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-e634ef1394ca266eb23e7cfed77ea60f15d8d473.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-81a745eadb635184f1e988957701766362862715.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-39256c2559541d1a0707956d93ddb242dc3374d2.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-54c63f69949352518765b212cba2b329b6e5f326.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-20a79a781dbec5eb890cf3cd44f10178c8278d15.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-256682d3e0f72f6cfb6c5c297289621fef6829cb.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/2.6.0/88ba32feefe385d5dc284b71f649201eabd15778/protobuf-java-2.6.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="88ba32feefe385d5dc284b71f649201eabd15778">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/protobuf-java-2.6.0-29c68259747f276f1a6044262bd8f2565da16328.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-dc81e13cb7e5803247421d275c5039b5d80b4752.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-a157f4d7f8f85b31b1a55db52f351f29ca4eb67f.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-8d1476ce2830345ebb74bb2d821f29bc5acf54ad.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-c49f7fe15df13518c42daaceb522c35f276e6f61.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/okio-1.4.0-7e92951df0bd009589337ad77ac682c04d7d9ae3.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-de6af0e9a58f0882e9365c0dff974f48d4c1f863.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/library-2.4.0-d601dcbffcbcd6b10e0102aebc1b1a4da5eca1f9.jar" />
+    </item>
+    <item
+        jar="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="/home/wprenison/Work/GoMetro/Android/GoMetroLiveDev/app/build/intermediates/pre-dexed/debug/classes-02ef415a1a69aaa01caf23f0190c473a5276406e.jar" />
+    </item>
+
+</items>

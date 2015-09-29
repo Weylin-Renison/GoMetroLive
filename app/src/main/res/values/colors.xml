@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="btnBlue">#287f99</color>
+    <color name="btnBlueClick">#1c596b</color>
+    <color name="btnGreen">#92C300</color>
+    <color name="btnGreenClick">#769E00</color>
+    <color name="btnSeaBlue">#089097</color>
+    <color name="btnSeaBlueClick">#067379</color>
+    <color name="btnBabyBlue">#08B8E3</color>
+    <color name="btnBabyBlueClick">#057F9C</color>
+</resources>

@@ -1,0 +1,61 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gometro.gometrolivedev.WelcomeActivity">
+
+    <ImageView
+        android:id="@+id/imgvWABackground"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcome_bg"/>
+
+
+    <FrameLayout
+        android:id="@+id/fLayWAContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imgvWAGometroLogo"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_gometro_logo"/>
+
+    <ImageView
+        android:id="@+id/imgvWASponsorLogo1"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_sponsor_1"/>
+
+    <ImageView
+        android:id="@+id/imgvWASponsorLogo2"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/imgvWASponsorLogo1"
+        android:layout_alignTop="@id/imgvWASponsorLogo1"
+        android:src="@drawable/ic_sponsor_2"/>
+    
+    <ImageView
+        android:id="@+id/imgvWASponsorLogo3"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/imgvWASponsorLogo2"
+        android:layout_alignTop="@id/imgvWASponsorLogo2"
+        android:src="@drawable/ic_sponsor_3"/>
+
+</RelativeLayout>

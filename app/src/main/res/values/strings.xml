@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">GoMetro Live</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    //Welcome Activity
+    <string name="activW_title">Welcome</string>
+
+    //Main Activity
+    <string name="activM_btn_new_route">New Route</string>
+    <string name="activM_btn_route_history">Route History</string>
+    <string name="activM_btn_my_score"><p>m Ticketing</p></string>
+    <string name="activM_btn_my_training">My Training</string>
+    <string name="activM_btn_my_profile">My profile</string>
+    <string name="activM_btn_logout">Logout ></string>
+
+    //Fragment Welcome
+    <string name="fragW_btn_register">Register</string>
+    <string name="fragW_btn_login">Login</string>
+    <string name="title_activity_driver_aid">DriverAidActivity</string>
+
+    //Fragment trip status bar
+    <string name="fragTSB_btn_heavy_traffic">Heavy Traffic</string>
+    <string name="fragTSB_btn_bus_full">Bus Full</string>
+    <string name="fragTSB_btn_bus_empty">Bus Empty</string>
+
+    //Fragment Login
+    <string name="fragL_etxt_username_hint">Username</string>
+    <string name="fargL_etxt_password_hint">Password</string>
+    <string name="fragL_btn_login">Login ></string>
+
+    //Fragment
+    <string name="fragST_txtv_route_name">Route Information</string>
+    <string name="fragST_txtv_description">Description</string>
+    <string name="fragST_etxt_description_hint">Description</string>
+    <string name="fragST_txtv_vehicle_info">Vehicle Information</string>
+    <string name="fragST_etxt_transport_company_hint">Transport Company</string>
+    <string name="fragST_etxt_fare_price_hint">Fare Price</string>
+    <string name="fragST_btn_start_route">Start Route</string>
+
+    //My Profile Activity
+    <string name="activMP_title">My Profile</string>
+    <string name="title_activity_my_profile">MyProfileActivity</string>
+    <string name="title_activity_my_training">MyTrainingActivity</string>
+
+</resources>

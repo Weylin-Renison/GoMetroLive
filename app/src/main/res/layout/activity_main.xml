@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/fLayMAActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <LinearLayout
+        android:id="@+id/linLayMenuBtns"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fLayMAActionBar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linLayMAMenuBtnRow1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnMANewRoute"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_blue_button"
+                android:drawableTop="@drawable/ic_new_route"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:text="@string/activM_btn_new_route"
+                android:onClick="onClickNewRoute"/>
+
+            <Button
+                android:id="@+id/btnMARouteHistory"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_sea_blue_button"
+                android:drawableTop="@drawable/ic_route_history"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:text="@string/activM_btn_route_history"
+                android:onClick="onClickRouteHistory"/>
+
+            <Button
+                android:id="@+id/btnMAMticketing"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:paddingTop="70dp"
+                android:paddingBottom="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_baby_blue_button"
+                android:drawableTop="@drawable/ic_mticketing"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:text="@string/activM_btn_my_score"
+                android:onClick="onClickMyScore"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linLayMAMenuBtnRow2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnMAMyTraining"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_green_button"
+                android:drawableTop="@drawable/ic_my_training"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:text="@string/activM_btn_my_training"
+                android:onClick="onClickMyTraining"/>
+
+            <Button
+                android:id="@+id/btnMAMyProfile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_blue_button"
+                android:drawableTop="@drawable/ic_my_profile"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:text="@string/activM_btn_my_profile"
+                android:onClick="onClickMyProfile"/>
+
+            <Button
+                android:id="@+id/btnMALogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_blue_button"
+                android:textSize="35dp"
+                android:textColor="@color/white"
+                android:text="@string/activM_btn_logout"
+                android:onClick="onClickLogout"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/ibtnFTSBHeavyTraffic"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="40dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/selector_btn_heavy_traffic"/>
+
+    <TextView
+        android:id="@+id/txtvFTSBHeavyTrafficDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ibtnFTSBHeavyTraffic"
+        android:layout_alignRight="@id/ibtnFTSBHeavyTraffic"
+        android:layout_alignLeft="@id/ibtnFTSBHeavyTraffic"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/material_blue_grey_950"
+        android:text="@string/fragTSB_btn_heavy_traffic"/>
+
+    <TextView
+        android:id="@+id/txtvFTSBBusFullDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ibtnFTSBHeavyTraffic"
+        android:layout_alignRight="@id/ibtnFTSBHeavyTraffic"
+        android:layout_alignLeft="@id/ibtnFTSBHeavyTraffic"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/material_blue_grey_950"
+        android:text="@string/fragTSB_btn_bus_full"/>
+
+    <ImageButton
+        android:id="@+id/ibtnFTSBBusFull"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/txtvFTSBBusFullDesc"
+        android:layout_marginRight="40dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/selector_btn_bus_full"/>
+
+    <ImageButton
+        android:id="@+id/ibtnFTSBBusEmpty"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/txtvFTSBHeavyTrafficDesc"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/selector_btn_bus_empty"/>
+
+    <TextView
+        android:id="@+id/txtvFTSBBusEmptyDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ibtnFTSBBusEmpty"
+        android:layout_alignRight="@id/ibtnFTSBBusEmpty"
+        android:layout_alignLeft="@id/ibtnFTSBBusEmpty"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/material_blue_grey_950"
+        android:text="@string/fragTSB_btn_bus_empty"/>
+
+</RelativeLayout>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    android:background="@drawable/bg_start_trip">
+
+    <View
+        android:id="@+id/vFSTAnchorVertCent"
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="@color/material_blue_grey_900"/>
+
+    <ImageView
+        android:id="@+id/imgvFSTRouteInfoIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_route_info"/>
+
+    <TextView
+        android:id="@+id/txtvFSTRouteInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_toRightOf="@id/imgvFSTRouteInfoIcon"
+        android:textColor="@color/btnBlueClick"
+        android:textSize="36dp"
+        android:text="@string/fragST_txtv_route_name"/>
+
+    <Spinner
+        android:id="@+id/spnrFSTSelectRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgvFSTRouteInfoIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@id/vFSTAnchorVertCent"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"/>
+
+    <Spinner
+        android:id="@+id/spnrFSTSelectTrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnrFSTSelectRoute"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@id/vFSTAnchorVertCent"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"/>
+
+    <EditText
+        android:id="@+id/etxtFSTDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@id/vFSTAnchorVertCent"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="top"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:text="@string/fragST_etxt_description_hint"
+        android:lines="9"/>
+
+    <ImageView
+        android:id="@+id/imgvFSTDescriptionIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/etxtFSTDescription"
+        android:src="@drawable/ic_route_info"/>
+
+    <TextView
+        android:id="@+id/txtvFSTDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:layout_toRightOf="@id/imgvFSTDescriptionIcon"
+        android:layout_above="@id/etxtFSTDescription"
+        android:textColor="@color/btnBlueClick"
+        android:textSize="36dp"
+        android:text="@string/fragST_txtv_description"/>
+
+    <ImageView
+        android:id="@+id/imgvFSTVehicleInfoIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_alignLeft="@id/vFSTAnchorVertCent"
+        android:src="@drawable/ic_route_info"/>
+
+    <TextView
+        android:id="@+id/txtvFSTVehicleInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_toRightOf="@id/imgvFSTVehicleInfoIcon"
+        android:textColor="@color/btnBlueClick"
+        android:textSize="36dp"
+        android:text="@string/fragST_txtv_vehicle_info"/>
+
+    <Spinner
+        android:id="@+id/spnrFSTVehicleType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgvFSTVehicleInfoIcon"
+        android:layout_alignLeft="@id/vFSTAnchorVertCent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/etxtFSTTransportCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnrFSTVehicleType"
+        android:layout_alignLeft="@id/vFSTAnchorVertCent"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:textSize="28dp"
+        android:hint="@string/fragST_etxt_transport_company_hint"/>
+
+    <EditText
+        android:id="@+id/etxtFSTFarePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etxtFSTTransportCompany"
+        android:layout_alignLeft="@id/vFSTAnchorVertCent"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:inputType="numberDecimal"
+        android:textSize="28dp"
+        android:hint="@string/fragST_etxt_fare_price_hint"/>
+
+    <Button
+        android:id="@+id/btnFSTStartRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@id/vFSTAnchorVertCent"
+        android:layout_marginLeft="50dp"
+        android:padding="40dp"
+        android:textSize="36dp"
+        android:textColor="@color/white"
+        android:drawableTop="@drawable/ic_btn_start_route"
+        android:background="@drawable/selector_btn_start_route_bg"
+        android:text="@string/fragST_btn_start_route"/>
+
+</RelativeLayout>
