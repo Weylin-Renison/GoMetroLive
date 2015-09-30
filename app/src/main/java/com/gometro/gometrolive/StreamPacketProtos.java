@@ -182,6 +182,15 @@ public final class StreamPacketProtos {
        * <code>optional .gometrolive.StreamPacket.StreamData.IncidentReport incidentReport = 5;</code>
        */
       com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData.IncidentReport getIncidentReport();
+
+      /**
+       * <code>required bool liveStreaming = 6;</code>
+       */
+      boolean hasLiveStreaming();
+      /**
+       * <code>required bool liveStreaming = 6;</code>
+       */
+      boolean getLiveStreaming();
     }
     /**
      * Protobuf type {@code gometrolive.StreamPacket.StreamData}
@@ -280,6 +289,11 @@ public final class StreamPacketProtos {
                   incidentReport_ = subBuilder.buildPartial();
                 }
                 bitField0_ |= 0x00000010;
+                break;
+              }
+              case 48: {
+                bitField0_ |= 0x00000020;
+                liveStreaming_ = input.readBool();
                 break;
               }
             }
@@ -2230,12 +2244,28 @@ public final class StreamPacketProtos {
         return incidentReport_;
       }
 
+      public static final int LIVESTREAMING_FIELD_NUMBER = 6;
+      private boolean liveStreaming_;
+      /**
+       * <code>required bool liveStreaming = 6;</code>
+       */
+      public boolean hasLiveStreaming() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>required bool liveStreaming = 6;</code>
+       */
+      public boolean getLiveStreaming() {
+        return liveStreaming_;
+      }
+
       private void initFields() {
         vehicleId_ = 0;
         driverId_ = 0;
         locData_ = com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData.LocData.getDefaultInstance();
         statusData_ = com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData.StatusData.getDefaultInstance();
         incidentReport_ = com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData.IncidentReport.getDefaultInstance();
+        liveStreaming_ = false;
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
@@ -2256,6 +2286,10 @@ public final class StreamPacketProtos {
           return false;
         }
         if (!hasStatusData()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasLiveStreaming()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -2295,6 +2329,9 @@ public final class StreamPacketProtos {
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
           output.writeMessage(5, incidentReport_);
         }
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          output.writeBool(6, liveStreaming_);
+        }
         output.writeRawBytes(unknownFields);
       }
 
@@ -2323,6 +2360,10 @@ public final class StreamPacketProtos {
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(5, incidentReport_);
+        }
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(6, liveStreaming_);
         }
         size += unknownFields.size();
         memoizedSerializedSize = size;
@@ -2428,6 +2469,8 @@ public final class StreamPacketProtos {
           bitField0_ = (bitField0_ & ~0x00000008);
           incidentReport_ = com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData.IncidentReport.getDefaultInstance();
           bitField0_ = (bitField0_ & ~0x00000010);
+          liveStreaming_ = false;
+          bitField0_ = (bitField0_ & ~0x00000020);
           return this;
         }
 
@@ -2471,6 +2514,10 @@ public final class StreamPacketProtos {
             to_bitField0_ |= 0x00000010;
           }
           result.incidentReport_ = incidentReport_;
+          if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+            to_bitField0_ |= 0x00000020;
+          }
+          result.liveStreaming_ = liveStreaming_;
           result.bitField0_ = to_bitField0_;
           return result;
         }
@@ -2492,6 +2539,9 @@ public final class StreamPacketProtos {
           if (other.hasIncidentReport()) {
             mergeIncidentReport(other.getIncidentReport());
           }
+          if (other.hasLiveStreaming()) {
+            setLiveStreaming(other.getLiveStreaming());
+          }
           setUnknownFields(
               getUnknownFields().concat(other.unknownFields));
           return this;
@@ -2511,6 +2561,10 @@ public final class StreamPacketProtos {
             return false;
           }
           if (!hasStatusData()) {
+            
+            return false;
+          }
+          if (!hasLiveStreaming()) {
             
             return false;
           }
@@ -2791,6 +2845,38 @@ public final class StreamPacketProtos {
           incidentReport_ = com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData.IncidentReport.getDefaultInstance();
 
           bitField0_ = (bitField0_ & ~0x00000010);
+          return this;
+        }
+
+        private boolean liveStreaming_ ;
+        /**
+         * <code>required bool liveStreaming = 6;</code>
+         */
+        public boolean hasLiveStreaming() {
+          return ((bitField0_ & 0x00000020) == 0x00000020);
+        }
+        /**
+         * <code>required bool liveStreaming = 6;</code>
+         */
+        public boolean getLiveStreaming() {
+          return liveStreaming_;
+        }
+        /**
+         * <code>required bool liveStreaming = 6;</code>
+         */
+        public Builder setLiveStreaming(boolean value) {
+          bitField0_ |= 0x00000020;
+          liveStreaming_ = value;
+          
+          return this;
+        }
+        /**
+         * <code>required bool liveStreaming = 6;</code>
+         */
+        public Builder clearLiveStreaming() {
+          bitField0_ = (bitField0_ & ~0x00000020);
+          liveStreaming_ = false;
+          
           return this;
         }
 
