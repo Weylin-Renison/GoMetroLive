@@ -39,4 +39,29 @@
 
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/txtvDAStreamLiveDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/material_blue_grey_950"
+        android:text="@string/activDA_btn_live_stream"/>
+
+    <ImageButton
+        android:id="@+id/ibtnDAStreamLive"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="25dp"
+        android:layout_above="@+id/txtvDAStreamLiveDesc"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:src="@drawable/selector_btn_live_stream"
+        android:onClick="onClickLiveStream"/>
+
 </RelativeLayout>

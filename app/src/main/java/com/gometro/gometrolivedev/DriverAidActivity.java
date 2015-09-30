@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -11,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.gometro.gometrolive.StreamPacketProtos;
@@ -54,6 +57,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     private List<Marker> stopsMarkerList;   //List of stop markers user has to stop at
     private Marker userLocMarker;   //User's location
     private boolean follow = true; //Used to det if user should be followed on the map or not
+    private boolean liveStream = false; //Used to check if stream should be broadcast to companion apps
 
     //Fragment  vars
     private FragmentManager fragMang;
@@ -67,6 +71,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     private FrameLayout fLayBtnDarwerContent;
     private FrameLayout fLayMainContent;
     private MapView mapView;
+    private ImageButton btnLiveStream;
 
     private ServiceConnection serviceConnection = new ServiceConnection()
     {
@@ -116,6 +121,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         mapView = (MapView) findViewById(R.id.mvDAMap);
         fLayMainContent = (FrameLayout) findViewById(R.id.fLayDAMainContent);
         fLayBtnDarwerContent = (FrameLayout) findViewById(R.id.fLayDAButtonDrawerContent);
+        btnLiveStream = (ImageButton) findViewById(R.id.ibtnDAStreamLive);
 
         //Get ref to frag manager
         fragMang = getSupportFragmentManager();
@@ -233,6 +239,18 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         Log.i(TAG, "onStop: ");
     }
 
+    public void onClickLiveStream(View view)
+    {
+        //Swap status
+        liveStream = !liveStream;
+
+        //Swap button images
+        if(liveStream)
+            btnLiveStream.setImageDrawable(getResources().getDrawable(R.drawable.btn_live_stream_active));
+        else
+            btnLiveStream.setImageDrawable(getResources().getDrawable(R.drawable.selector_btn_live_stream));
+    }
+
     @Override
     public void onLocationUpdate(Location newLocation)
     {
@@ -280,14 +298,15 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
                 params.put("upstreamByteData", upstreamIS);
 
                 //Get url
-               /* SharedPreferences prefMang = PreferenceManager.getDefaultSharedPreferences(this);
-                String URL_BASE = prefMang.getString("URL_BASE", null);
-                String API_UPLOAD = prefMang.getString("API_UPLOAD", null);*/
+                SharedPreferences prefMang = PreferenceManager.getDefaultSharedPreferences(this);
+                String SERVER_ADDRESS = prefMang.getString("SERVER_ADDRESS", null);
+                String SERVER_API_UPLOAD = prefMang.getString("SERVER_API_UPLOAD", null);
+                Log.i(TAG, "URL: " + SERVER_ADDRESS + SERVER_API_UPLOAD);
 
                 AsyncHttpClient client = new AsyncHttpClient();
                 client.setTimeout(240 * 1000);
                 client.setUserAgent("android");
-                client.post("http://192.168.8.100:9000/uploadUpstreamData", params,		//192.168.0.29 home URL_BASE + API_UPLOAD for server (54.68.55.70)
+                client.post("http://192.168.8.102:9000" + SERVER_API_UPLOAD, params,		//192.168.0.29 home URL_BASE + API_UPLOAD for server (54.68.55.70)
                             new AsyncHttpResponseHandler()
                             {
                                 @Override
@@ -334,8 +353,10 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         StreamData.StatusData statusData = statusDataBuilder.build();
 
         //Build upstream data packet
-        upstreamBuilder.setVehicleId(2);
+        //TODO: change vehicle id and driver id to dynamic
+        upstreamBuilder.setVehicleId(1);
         upstreamBuilder.setDriverId(1);
+        upstreamBuilder.setLiveStreaming(liveStream);
         upstreamBuilder.setLocData(locData);
         upstreamBuilder.setStatusData(statusData);
         StreamData upstreamDataPacket = upstreamBuilder.build();

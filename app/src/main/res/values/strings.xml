@@ -7,6 +7,9 @@
     //Welcome Activity
     <string name="activW_title">Welcome</string>
 
+    //Driver Aid Activity
+    <string name="activDA_btn_live_stream">Broadcast Stream</string>
+
     //Main Activity
     <string name="activM_btn_new_route">New Route</string>
     <string name="activM_btn_route_history">Route History</string>
