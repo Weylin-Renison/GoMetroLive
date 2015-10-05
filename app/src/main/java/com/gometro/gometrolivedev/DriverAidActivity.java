@@ -50,7 +50,10 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     //Location Service Vars
     private Context context = this;
     private MixedLocationService locService;
-    private boolean isBound = false;
+    private boolean isMixedLocServiceBound = false;
+
+    private UpstreamService upstreamService;
+    private boolean isUpstreamServiceBound = false;
 
     //Vars
     //TODO: Route data var here
@@ -73,7 +76,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     private MapView mapView;
     private ImageButton btnLiveStream;
 
-    private ServiceConnection serviceConnection = new ServiceConnection()
+    private ServiceConnection serviceMixedLocConnection = new ServiceConnection()
     {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service)
@@ -83,7 +86,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
             //Get ref to service from binder here
             MixedLocationService.MixedLocServBinder binder = (MixedLocationService.MixedLocServBinder) service;
             locService = binder.getService();
-            isBound = true;
+            isMixedLocServiceBound = true;
 
             locService.initService(context);
             locService.requestLocationUpdates();
@@ -94,7 +97,28 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         {
             Log.i(TAG, "onServiceDisconnected:");
             locService.stopLocationUpdates();
-            isBound = false;
+            isMixedLocServiceBound = false;
+        }
+    };
+
+    private ServiceConnection serviceUpstreamConnection = new ServiceConnection()
+    {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service)
+        {
+            Log.i(TAG, "onServiceConnected:");
+
+            //Get ref to service from binder here
+            UpstreamService.UpstreamServBinder binder = (UpstreamService.UpstreamServBinder) service;
+            upstreamService = binder.getService();
+            isUpstreamServiceBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name)
+        {
+            Log.i(TAG, "onServiceDisconnected:");
+            isUpstreamServiceBound = false;
         }
     };
 
@@ -128,6 +152,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
         initMap();
         initActionBar();
+        initTripStatusBar();
         initStartTrip();
     }
 
@@ -172,7 +197,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     private void initStartTrip()
     {
         FragmentTransaction fragTrans = fragMang.beginTransaction();
-        fragTrans.setCustomAnimations(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_bottom, R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_bottom);
+        fragTrans.setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_slide_out_top, R.anim.abc_slide_in_top, R.anim.abc_slide_out_top);
         fragTrans.add(R.id.fLayDAMainContent, new FragmentStartTrip(), FRAG_TAG_START_TRIP);
         fragTrans.commit();
     }
@@ -190,7 +215,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         fragTripStatusBar = new FragmentTripStatusBar();
         FragmentTransaction fragTrans = fragMang.beginTransaction();
         fragTrans.setCustomAnimations(R.anim.slide_in_right, android.R.anim.slide_out_right);
-        fragTrans.add(R.id.fLayDAButtonDrawerContent, fragTripStatusBar , FRAG_TAG_TRIP_STATUS_BAR);
+        fragTrans.add(R.id.fLayDAButtonDrawerContent, fragTripStatusBar, FRAG_TAG_TRIP_STATUS_BAR);
         fragTrans.commit();
     }
 
@@ -201,8 +226,11 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         Log.i(TAG, "onStart: ");
 
         //Bind to service
-        Intent bindIntent = new Intent(DriverAidActivity.this, MixedLocationService.class);
-        bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+        Intent bindMixedLocServIntent = new Intent(DriverAidActivity.this, MixedLocationService.class);
+        bindService(bindMixedLocServIntent, serviceMixedLocConnection, Context.BIND_AUTO_CREATE);
+
+        Intent bindUpstreamServiceIntent = new Intent(DriverAidActivity.this, UpstreamService.class);
+        bindService(bindUpstreamServiceIntent, serviceUpstreamConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -210,6 +238,13 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     {
         super.onResume();
         Log.i(TAG, "onResume: ");
+
+        //Bind to service
+        Intent bindMixedLocServIntent = new Intent(DriverAidActivity.this, MixedLocationService.class);
+        bindService(bindMixedLocServIntent, serviceMixedLocConnection, Context.BIND_AUTO_CREATE);
+
+        Intent bindUpstreamServiceIntent = new Intent(DriverAidActivity.this, UpstreamService.class);
+        bindService(bindUpstreamServiceIntent, serviceUpstreamConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -222,14 +257,20 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     @Override
     protected void onPause()
     {
-        super.onPause();
         Log.i(TAG, "onPause: ");
         //Unbind and stop service
-        if(isBound)
+        if(isMixedLocServiceBound)
         {
             locService.stopLocationUpdates();
-            unbindService(serviceConnection);
+            unbindService(serviceMixedLocConnection);
         }
+
+        if(isUpstreamServiceBound)
+        {
+            unbindService(serviceUpstreamConnection);
+        }
+
+        super.onPause();
     }
 
     @Override
@@ -269,11 +310,21 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
             if(follow)
                 animateCamera(newLocation);
 
-            //TODO: package update
+            //Send data to service for upstream
+            if(isUpstreamServiceBound)
+            {
+                boolean[] statusValues = {false, false, false}; //Save guard if frag tip status bar has not been initialized for some reason
+                if(fragTripStatusBar != null)
+                    statusValues = fragTripStatusBar.getStatus();
+
+                upstreamService.streamContent(newLocation, statusValues, liveStream, 1, 1, 1);
+            }
+
+            /*//TODO: package update
             StreamData upstreamDataPacket = constructUpstreamPacket(newLocation);
 
             //TODO: upload stream data to server
-            uploadUpstreamData(upstreamDataPacket);
+            uploadUpstreamData(upstreamDataPacket);*/
         }
         else
             Toast.makeText(this, "Attempting to locate you", Toast.LENGTH_LONG).show();
@@ -306,7 +357,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
                 AsyncHttpClient client = new AsyncHttpClient();
                 client.setTimeout(240 * 1000);
                 client.setUserAgent("android");
-                client.post("http://192.168.8.102:9000" + SERVER_API_UPLOAD, params,		//192.168.0.29 home URL_BASE + API_UPLOAD for server (54.68.55.70)
+                client.post(SERVER_ADDRESS + SERVER_API_UPLOAD, params,		//"http://192.168.8.102:9000" 192.168.0.29 home URL_BASE + API_UPLOAD for server (54.68.55.70)
                             new AsyncHttpResponseHandler()
                             {
                                 @Override
@@ -374,12 +425,35 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
         userLocMarker = new Marker(mapView, "You", "Your last known location", new LatLng(location.getLatitude(), location.getLongitude()));
 
-        //TODO: Rotate drawable according to barring
-        //        BitmapDrawable userMarkerIcon = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_user_marker);
-        Drawable rotatedDrawable = rotateToBearing(location.getBearing(), R.drawable.ic_user_marker);
+        //Get dynamic drawable based on status
+        int ic_dynamic_vehicle = R.drawable.ic_bus_big;
+
+        if(fragTripStatusBar != null)
+            ic_dynamic_vehicle = getStatusDrawableResource(fragTripStatusBar.getStatus()[0], fragTripStatusBar.getStatus()[1], fragTripStatusBar.getStatus()[2]);
+
+        //Rotate drawable according to barring
+        Drawable rotatedDrawable = rotateToBearing(location.getBearing(), ic_dynamic_vehicle);
         userLocMarker.setIcon(new Icon(rotatedDrawable));
 
         mapView.addMarker(userLocMarker);
+    }
+
+    private int getStatusDrawableResource(boolean busFull, boolean heavyTraffic, boolean busEmpty)
+    {
+        int drawableRes = R.drawable.ic_bus_big;
+
+        if(busEmpty && !heavyTraffic)
+            drawableRes = R.drawable.ic_bus_g;
+        else if(busFull && !heavyTraffic)
+            drawableRes = R.drawable.ic_bus_r;
+        else if(heavyTraffic && !busEmpty && !busFull)
+            drawableRes = R.drawable.ic_bus_y;
+        else if(busEmpty && heavyTraffic)
+            drawableRes = R.drawable.ic_bus_g_y;
+        else if(busFull && heavyTraffic)
+            drawableRes = R.drawable.ic_bus_r_y;
+
+        return drawableRes;
     }
 
     //Animates camera to location
@@ -396,8 +470,6 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
         fLayMainContent.startAnimation(slideOut);
         fLayMainContent.setVisibility(View.GONE);
-
-        initTripStatusBar();
     }
 
     //Display chosen trip on map
@@ -427,11 +499,14 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
     private Drawable rotateToBearing(float bearing, int drawableResource)
     {
+        if(bearing < 10 || bearing > 350)
+            bearing = 0;
+
         Bitmap bmp = BitmapFactory.decodeResource(getResources(), drawableResource);
         // Getting width & height of the given image.
         int w = bmp.getWidth();
         int h = bmp.getHeight();
-        // Setting post rotate to 90
+        // Setting post rotate to bearing
         Matrix mtx = new Matrix();
         mtx.postRotate(bearing);
         // Rotating Bitmap

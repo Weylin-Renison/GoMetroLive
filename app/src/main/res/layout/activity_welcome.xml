@@ -58,4 +58,13 @@
         android:layout_alignTop="@id/imgvWASponsorLogo2"
         android:src="@drawable/ic_sponsor_3"/>
 
+    <ImageView
+        android:id="@+id/imgvWASponsorLogo4"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/imgvWASponsorLogo3"
+        android:layout_alignTop="@id/imgvWASponsorLogo2"
+        android:src="@drawable/ic_sponsor_4"/>
+
 </RelativeLayout>

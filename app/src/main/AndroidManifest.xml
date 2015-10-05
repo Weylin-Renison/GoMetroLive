@@ -36,7 +36,7 @@
         <activity
             android:name=".DriverAidActivity"
             android:label="@string/title_activity_driver_aid"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="landscape">
         </activity>
         <activity
@@ -53,6 +53,7 @@
         </activity>
 
         <service android:name=".MixedLocationService" />
+        <service android:name=".UpstreamService"/>
 
     </application>
 

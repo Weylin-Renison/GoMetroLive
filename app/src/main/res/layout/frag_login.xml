@@ -11,6 +11,8 @@
         android:gravity="center"
         android:singleLine="true"
         android:textSize="35dp"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="@android:color/secondary_text_light"
         android:hint="@string/fragL_etxt_username_hint"/>
 
     <EditText
@@ -21,6 +23,8 @@
         android:singleLine="true"
         android:textSize="35dp"
         android:inputType="textPassword"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="@android:color/secondary_text_light"
         android:hint="@string/fargL_etxt_password_hint"/>
 
     <Button

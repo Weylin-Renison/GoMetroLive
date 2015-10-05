@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
 
     //Welcome Activity
-    <string name="activW_title">Welcome</string>
+    <string name="activW_title">GoMetro Live</string>
 
     //Driver Aid Activity
     <string name="activDA_btn_live_stream">Broadcast Stream</string>
@@ -46,5 +46,27 @@
     <string name="activMP_title">My Profile</string>
     <string name="title_activity_my_profile">MyProfileActivity</string>
     <string name="title_activity_my_training">MyTrainingActivity</string>
+
+    //TEST VAR
+    <string-array name="vehcileTestArray">
+        <item>Vehicle</item>
+        <item>CY 100-000</item>
+        <item>GP 200-000</item>
+        <item>CA 300-000</item>
+        <item>BRN 400-000</item>
+    </string-array>
+
+    <string-array name="routeTestArray">
+        <item>Route</item>
+        <item>Parktown Circular</item>
+        <item>Hatfield IM</item>
+    </string-array>
+
+    <string-array name="tripTestArray">
+        <item>Trip</item>
+        <item>Trip A</item>
+        <item>Trip B</item>
+        <item>Trip C</item>
+    </string-array>
 
 </resources>
