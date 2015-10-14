@@ -12,15 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:spinnerMode="dialog"
-        android:entries="@array/vehcileTestArray"
-        android:background="@android:drawable/editbox_dropdown_light_frame"/>
-
-    <ImageView
-        android:id="@+id/imgvFSTNextArrowRoute"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        android:src="@drawable/ic_next_arrow"
+        android:background="@drawable/bg_spnr_green"
         android:visibility="invisible"/>
 
     <Spinner
@@ -28,17 +20,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:visibility="invisible"
         android:spinnerMode="dialog"
-        android:entries="@array/routeTestArray"
-        android:background="@android:drawable/editbox_dropdown_light_frame"/>
-
-    <ImageView
-        android:id="@+id/imgvFSTNextArrowTrip"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        android:src="@drawable/ic_next_arrow"
+        android:background="@drawable/bg_spnr_blue"
         android:visibility="invisible"/>
 
     <Spinner
@@ -46,10 +29,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:visibility="invisible"
         android:spinnerMode="dialog"
-        android:entries="@array/tripTestArray"
-        android:background="@android:drawable/editbox_dropdown_light_frame"/>
+        android:background="@drawable/bg_spnr_red"
+        android:visibility="invisible"/>
+
+    <Spinner
+        android:id="@+id/spnrFSTTripTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:spinnerMode="dialog"
+        android:background="@drawable/bg_spnr_green"
+        android:visibility="invisible"/>
 
 
 

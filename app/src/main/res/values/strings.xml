@@ -8,7 +8,7 @@
     <string name="activW_title">GoMetro Live</string>
 
     //Driver Aid Activity
-    <string name="activDA_btn_live_stream">Broadcast Stream</string>
+    <string name="activDA_btn_live_stream">Start Trip</string>
 
     //Main Activity
     <string name="activM_btn_new_route">New Route</string>
@@ -29,11 +29,21 @@
     <string name="fragTSB_btn_bus_empty">Bus Empty</string>
 
     //Fragment Login
-    <string name="fragL_etxt_username_hint">Username</string>
+    <string name="fragL_etxt_username_hint">Email</string>
     <string name="fargL_etxt_password_hint">Password</string>
     <string name="fragL_btn_login">Login ></string>
 
-    //Fragment
+    //Fragment Register Driver
+    <string name="fragRD_etxt_first_name">First Name</string>
+    <string name="fragRD_etxt_last_name">Last Name</string>
+    <string name="fragRD_etxt_email">Email</string>
+    <string name="fragRD_etxt_username">Username</string>
+    <string name="fragRD_etxt_password">Password</string>
+    <string name="fragRD_etxt_retype_password">Retype Password</string>
+    <string name="fargRD_etxt_organization_code">Organization Code</string>
+    <string name="fragRD_txtv_date_of_birth">Date of birth</string>
+
+    //Fragment Start Trip
     <string name="fragST_txtv_route_name">Route Information</string>
     <string name="fragST_txtv_description">Description</string>
     <string name="fragST_etxt_description_hint">Description</string>
@@ -41,6 +51,17 @@
     <string name="fragST_etxt_transport_company_hint">Transport Company</string>
     <string name="fragST_etxt_fare_price_hint">Fare Price</string>
     <string name="fragST_btn_start_route">Start Route</string>
+
+    //Dialog Add Vehicle
+    <string name="diagAV_txtv_heading">Vehicle Information</string>
+    <string name="diagAV_etxt_number_plate">Number Plate</string>
+    <string name="diagAV_btn_cancel">Cancel</string>
+    <string name="diagAV_btn_done">Done</string>
+    <string-array name="diagAV_array_vehicle_types">
+        <item>Vehicle Type</item>
+        <item>Bus</item>
+        <item>Mini Bus</item>
+    </string-array>
 
     //My Profile Activity
     <string name="activMP_title">My Profile</string>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgTransWhite"
+    android:theme="@android:style/Theme.Holo.Light.Dialog">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etxtFRDFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:inputType="textPersonName"
+            android:gravity="center"
+            android:hint="@string/fragRD_etxt_first_name"/>
+
+        <EditText
+            android:id="@+id/etxtFRDLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:inputType="textPersonName"
+            android:gravity="center"
+            android:hint="@string/fragRD_etxt_last_name"/>
+
+        <TextView
+            android:id="@+id/txtvFRDDateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:text="@string/fragRD_txtv_date_of_birth"/>
+
+        <DatePicker
+            android:id="@+id/dpFRDDateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_gravity="center"
+            android:datePickerMode="calendar"
+            android:calendarViewShown="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etxtFRDEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:inputType="textEmailAddress"
+            android:gravity="center"
+            android:hint="@string/fragRD_etxt_email"/>
+
+        <EditText
+            android:id="@+id/etxtFRDPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:hint="@string/fragRD_etxt_password"/>
+
+        <EditText
+            android:id="@+id/etxtFRDRetypePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:hint="@string/fragRD_etxt_retype_password"/>
+
+        <ImageButton
+            android:id="@+id/ibtnFRDOrganizationCodeInfo"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="80dp"
+            android:layout_gravity="end"
+            android:src="@drawable/selector_question"
+            android:background="@null"/>
+
+        <EditText
+            android:id="@+id/etxtFRDOrganizationCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:hint="@string/fargRD_etxt_organization_code"/>
+
+        <Button
+            android:id="@+id/btnFRDRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center"
+            android:paddingTop="@dimen/xtra_large_btn_padding_top_bot"
+            android:paddingBottom="@dimen/xtra_large_btn_padding_top_bot"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:background="@drawable/selector_blue_button"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/large_text"
+            android:text="@string/fragW_btn_register"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+</LinearLayout>

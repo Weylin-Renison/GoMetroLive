@@ -2,10 +2,16 @@
 <resources>
     <color name="btnBlue">#287f99</color>
     <color name="btnBlueClick">#1c596b</color>
-    <color name="btnGreen">#92C300</color>
-    <color name="btnGreenClick">#769E00</color>
+    <color name="btnGreen">#2ecc71</color>
+    <color name="btnGreenClick">#27ae60</color>
+    <color name="btnRed">#e74c3c</color>
+    <color name="btnRedClick">#c0392b</color>
     <color name="btnSeaBlue">#089097</color>
     <color name="btnSeaBlueClick">#067379</color>
     <color name="btnBabyBlue">#08B8E3</color>
     <color name="btnBabyBlueClick">#057F9C</color>
+    <color name="bgClouds">#ecf0f1</color>
+    <color name="bgConcrete">#95a5a6</color>
+    <color name="bgSilver">#bdc3c7</color>
+    <color name="bgTransWhite">#E6ffffff</color>
 </resources>

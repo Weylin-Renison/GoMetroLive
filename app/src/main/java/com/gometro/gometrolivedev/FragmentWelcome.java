@@ -69,7 +69,7 @@ public class FragmentWelcome extends Fragment implements View.OnClickListener
     {
         if(v == btnRegister)
         {
-            Toast.makeText(activity, "Register Screen", Toast.LENGTH_SHORT).show();
+            activity.displayRegisterFrag();
 
         }
         else if(v == btnLogin)

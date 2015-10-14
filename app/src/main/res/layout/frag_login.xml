@@ -13,6 +13,7 @@
         android:textSize="35dp"
         android:textColor="@android:color/background_dark"
         android:textColorHint="@android:color/secondary_text_light"
+        android:inputType="textEmailAddress"
         android:hint="@string/fragL_etxt_username_hint"/>
 
     <EditText

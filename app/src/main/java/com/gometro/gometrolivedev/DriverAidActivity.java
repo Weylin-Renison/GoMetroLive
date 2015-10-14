@@ -7,7 +7,9 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -24,6 +26,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gometro.gometrolive.StreamPacketProtos;
@@ -35,9 +39,16 @@ import com.mapbox.mapboxsdk.api.ILatLng;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.overlay.Icon;
 import com.mapbox.mapboxsdk.overlay.Marker;
+import com.mapbox.mapboxsdk.overlay.PathOverlay;
 import com.mapbox.mapboxsdk.views.MapView;
+import com.mapbox.mapboxsdk.views.safecanvas.SafeDashPathEffect;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DriverAidActivity extends AppCompatActivity implements MixedLocationUserClassInterface {
@@ -61,6 +72,10 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     private Marker userLocMarker;   //User's location
     private boolean follow = true; //Used to det if user should be followed on the map or not
     private boolean liveStream = false; //Used to check if stream should be broadcast to companion apps
+    private PathOverlay tripShapeLine;  //The line overlay painted for the selected trip
+    private int driverId = 1;
+    public int vehicleId = 1;   //Is modified from frag start trip
+    private int streamId = 1;
 
     //Fragment  vars
     private FragmentManager fragMang;
@@ -69,12 +84,15 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     private final String FRAG_TAG_START_TRIP = "fragStartTrip";
 
     private FragmentTripStatusBar fragTripStatusBar;
+    private FragmentStartTrip fragStartTrip;
 
     //Views vars
     private FrameLayout fLayBtnDarwerContent;
     private FrameLayout fLayMainContent;
     private MapView mapView;
     private ImageButton btnLiveStream;
+    private TextView txtvLiveStream;
+    private ProgressBar progbLoading;
 
     private ServiceConnection serviceMixedLocConnection = new ServiceConnection()
     {
@@ -146,6 +164,14 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         fLayMainContent = (FrameLayout) findViewById(R.id.fLayDAMainContent);
         fLayBtnDarwerContent = (FrameLayout) findViewById(R.id.fLayDAButtonDrawerContent);
         btnLiveStream = (ImageButton) findViewById(R.id.ibtnDAStreamLive);
+        txtvLiveStream = (TextView) findViewById(R.id.txtvDAStreamLiveDesc);
+        progbLoading = (ProgressBar) findViewById(R.id.progbLoading);
+
+        //Init vars
+        stopsMarkerList = new ArrayList<>();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        driverId = prefs.getInt("driverId", 1);
 
         //Get ref to frag manager
         fragMang = getSupportFragmentManager();
@@ -198,7 +224,17 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     {
         FragmentTransaction fragTrans = fragMang.beginTransaction();
         fragTrans.setCustomAnimations(R.anim.abc_slide_in_top, R.anim.abc_slide_out_top, R.anim.abc_slide_in_top, R.anim.abc_slide_out_top);
-        fragTrans.add(R.id.fLayDAMainContent, new FragmentStartTrip(), FRAG_TAG_START_TRIP);
+        fragStartTrip = new FragmentStartTrip();
+        fragTrans.add(R.id.fLayDAMainContent, fragStartTrip, FRAG_TAG_START_TRIP);
+        fragTrans.commit();
+    }
+
+    public void restartTrip()
+    {
+        FragmentTransaction fragTrans = fragMang.beginTransaction();
+        fragTrans.remove(fragStartTrip);
+        fragStartTrip = new FragmentStartTrip();
+        fragTrans.add(R.id.fLayDAMainContent, fragStartTrip, FRAG_TAG_START_TRIP);
         fragTrans.commit();
     }
 
@@ -284,12 +320,25 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
     {
         //Swap status
         liveStream = !liveStream;
+        follow = true;
 
         //Swap button images
         if(liveStream)
+        {
             btnLiveStream.setImageDrawable(getResources().getDrawable(R.drawable.btn_live_stream_active));
+            txtvLiveStream.setText("Finish Trip");
+
+            //Also deactivate trip start bar
+            fragStartTrip.disableInputs();
+        }
         else
+        {
             btnLiveStream.setImageDrawable(getResources().getDrawable(R.drawable.selector_btn_live_stream));
+            txtvLiveStream.setText("Start Trip");
+
+            //Also re enable inputs for starting a trip
+            fragStartTrip.enableInputs();
+        }
     }
 
     @Override
@@ -317,7 +366,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
                 if(fragTripStatusBar != null)
                     statusValues = fragTripStatusBar.getStatus();
 
-                upstreamService.streamContent(newLocation, statusValues, liveStream, 1, 1, 1);
+                upstreamService.streamContent(newLocation, statusValues, liveStream, streamId, driverId, vehicleId);
             }
 
             /*//TODO: package update
@@ -328,6 +377,142 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         }
         else
             Toast.makeText(this, "Attempting to locate you", Toast.LENGTH_LONG).show();
+    }
+
+    public void paintShape(JSONArray jsonShapeArray)
+    {
+        //Turn follow off
+        follow = false;
+
+        //Remove shape if there was a pervious one painted on map
+        if(tripShapeLine != null)
+            mapView.removeOverlay(tripShapeLine);
+
+        //paint shape line
+        tripShapeLine = new PathOverlay(Color.BLUE, 3);
+
+        //Add points to line
+        for( int i = 0; i < jsonShapeArray.length(); i++)
+        {
+            try
+            {
+                JSONObject tempObj = jsonShapeArray.getJSONObject(i);
+                tripShapeLine.addPoint(tempObj.getDouble("shapePtLat"), tempObj.getDouble("shapePtLon"));
+            }
+            catch(JSONException je)
+            {
+                je.printStackTrace();
+                Log.e(TAG, "paintShape: an JsonException occurred whilst painting shape" + je.getMessage());
+            }
+        }
+
+        Paint linePaint = tripShapeLine.getPaint();
+
+        float[] intervals = {4.0f, 4.0f, 10.0f};
+        SafeDashPathEffect dashEffect = new SafeDashPathEffect(intervals, 5.0f, 4.5f);
+        linePaint.setPathEffect(dashEffect);
+
+        tripShapeLine.setPaint(linePaint);
+
+
+        mapView.getOverlays().add(tripShapeLine);
+
+        try
+        {
+            JSONObject startingPoint = jsonShapeArray.getJSONObject(0);
+            animateCamera(new LatLng(startingPoint.getDouble("shapePtLat"), startingPoint.getDouble("shapePtLon")));
+        }
+        catch(JSONException je)
+        {
+            je.printStackTrace();
+            Log.e(TAG, "paintShape: an JsonException occurred whilst trying to find starting point for camera animation: " + je.getMessage());
+        }
+    }
+
+    public void paintStops(JSONArray jsonStopsArray)
+    {
+        //Remove shape if there was a pervious one painted on map
+        if(stopsMarkerList != null)
+        {
+            mapView.removeMarkers(stopsMarkerList);
+            stopsMarkerList.clear();
+        }
+
+       for(int i = 0; i < jsonStopsArray.length(); i++)
+       {
+           try
+           {
+               JSONObject stopTime = jsonStopsArray.getJSONObject(i);
+               JSONObject stop = stopTime.getJSONObject("stopId");
+
+               //Log.d(TAG, "Stop: " + stop.getString("stopName") + ", " + stop.getString("stopDesc") + ", " + stop.getDouble("stopLat") + ", " + stop.getDouble("stopLon"));
+               Marker stopMarker = new Marker(stop.getString("stopName"), stop.getString("stopDesc"), new LatLng(stop.getDouble("stopLat"), stop.getDouble("stopLon")));
+               stopMarker.setIcon(new Icon(getResources().getDrawable(R.drawable.ic_stop_marker)));
+
+               stopsMarkerList.add(stopMarker);
+               mapView.addMarker(stopMarker);
+           }
+           catch(JSONException je)
+           {
+                je.printStackTrace();
+               Log.e(TAG, "An JsonException occured whilst painting stops: " + je.getMessage());
+           }
+       }
+    }
+
+    public void showHideLoadingCircle(boolean visibilityAction)
+    {
+        if(visibilityAction)
+        {
+            Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.abc_fade_in);
+            fadeIn.setDuration(500);
+            fadeIn.setFillEnabled(true);
+            fadeIn.setFillAfter(true);
+
+            progbLoading.startAnimation(fadeIn);
+        }
+        else
+        {
+            Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.abc_fade_out);
+            fadeOut.setDuration(500);
+
+            progbLoading.startAnimation(fadeOut);
+            progbLoading.setVisibility(View.GONE);
+        }
+    }
+
+    public void showHideLiveStreamButton(boolean visibilityAction)
+    {
+      /*  if(visibilityAction)
+        {
+            Animation slideIn = AnimationUtils.loadAnimation(this, R.anim.abc_slide_in_bottom);
+            slideIn.setDuration(500);
+            slideIn.setFillEnabled(true);
+            slideIn.setFillAfter(true);
+
+            btnLiveStream.startAnimation(slideIn);
+            txtvLiveStream.startAnimation(slideIn);
+        }*/
+    }
+
+    //Display chosen trip on map
+    private void displayTrip()
+    {
+        /*//add test line
+            PathOverlay line = new PathOverlay(Color.BLUE, 3);
+            line.addPoint(-33.9035862,18.543525);
+            line.addPoint(-33.9195113, 18.5819035);
+
+            Paint linePaint = line.getPaint();
+
+            float[] intervals = {4.0f, 4.0f, 10.0f};
+            SafeDashPathEffect dashEffect = new SafeDashPathEffect(intervals, 5.0f, 4.5f);
+            linePaint.setPathEffect(dashEffect);
+
+            line.setPaint(linePaint);
+
+
+            mapView.getOverlays().add(line);*/
     }
 
     //Writes stream data to byte array and uploads to server
@@ -462,6 +647,13 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         mapView.getController().animateTo(new LatLng(location.getLatitude(), location.getLongitude()));
     }
 
+    //Animates camera to location
+    private void animateCamera(LatLng location)
+    {
+        mapView.getController().setZoomAnimated(17.0f, location, true, false);
+        //mapView.getController().animateTo(location);
+    }
+
     public void closeTripStartScreen()
     {
 
@@ -470,26 +662,6 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
         fLayMainContent.startAnimation(slideOut);
         fLayMainContent.setVisibility(View.GONE);
-    }
-
-    //Display chosen trip on map
-    private void displayTrip()
-    {
-        /*//add test line
-            PathOverlay line = new PathOverlay(Color.BLUE, 3);
-            line.addPoint(-33.9035862,18.543525);
-            line.addPoint(-33.9195113, 18.5819035);
-
-            Paint linePaint = line.getPaint();
-
-            float[] intervals = {4.0f, 4.0f, 10.0f};
-            SafeDashPathEffect dashEffect = new SafeDashPathEffect(intervals, 5.0f, 4.5f);
-            linePaint.setPathEffect(dashEffect);
-
-            line.setPaint(linePaint);
-
-
-            mapView.getOverlays().add(line);*/
     }
 
     private void addStopMarker(LatLng location)

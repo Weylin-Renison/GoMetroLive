@@ -15,6 +15,10 @@ public class WelcomeActivity extends AppCompatActivity
     private final String TAG = "WelcomeActivity";
     private final String FRAG_TAG_WELCOME = "fragWelcome";
     private final String FRAG_TAG_LOGIN = "fargLogin";
+    private final String FRAG_TAG_REGISTER = "fragRegisterDriver";
+    private FragmentWelcome fragWelcome;
+    private FragmentLogin fragLogin;
+    private FragmentRegisterDriver fragRegisterDriver;
 
     private FragmentManager fragMang;
     private FrameLayout fLayContent;
@@ -40,19 +44,31 @@ public class WelcomeActivity extends AppCompatActivity
         fragMang = getSupportFragmentManager();
 
         //Init initial fragment
+        fragWelcome = new FragmentWelcome();
         android.support.v4.app.FragmentTransaction fragTrans = fragMang.beginTransaction();
         fragTrans.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_fade_in, R.anim.abc_fade_out);
-        fragTrans.add(R.id.fLayWAContent, new FragmentWelcome(), FRAG_TAG_WELCOME);
+        fragTrans.add(R.id.fLayWAContent, fragWelcome, FRAG_TAG_WELCOME);
         fragTrans.commit();
 
     }
 
     public void displayLoginFrag()
     {
+        fragLogin = new FragmentLogin();
         FragmentTransaction fragTrans = fragMang.beginTransaction();
         fragTrans.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_fade_in, R.anim.abc_fade_out);
-        fragTrans.replace(R.id.fLayWAContent, new FragmentLogin(), FRAG_TAG_LOGIN);
+        fragTrans.replace(R.id.fLayWAContent, fragLogin, FRAG_TAG_LOGIN);
         fragTrans.addToBackStack(FRAG_TAG_LOGIN);
+        fragTrans.commit();
+    }
+
+    public void displayRegisterFrag()
+    {
+        FragmentTransaction fragTrans = fragMang.beginTransaction();
+        fragTrans.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_fade_in, R.anim.abc_fade_out);
+        fragTrans.remove(fragWelcome);
+        fragTrans.replace(R.id.relLayWARoot, new FragmentRegisterDriver(), FRAG_TAG_REGISTER);
+        fragTrans.addToBackStack(FRAG_TAG_REGISTER);
         fragTrans.commit();
     }
 
