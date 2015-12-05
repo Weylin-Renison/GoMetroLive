@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
 public class GoMetroLiveApplication extends Application
 {
     private final String SERVER_SECRET = "85afe0c0b4a338aa0b0f1e5b803693a1a542c82e";
-    private final String SERVER_ADDRESS = "http://192.168.1.106:9000";//"http://159.8.180.6:9001";  //"http://192.168.0.29:9000";
+    private final String SERVER_ADDRESS = "http://159.8.180.6:9001"; //"http://192.168.8.100:9000";  //"http://192.168.1.106:9000";  //"http://192.168.0.29:9000";
     private final int SERVER_TIME_OUT = 8000;
     private final String SERVER_API_UPLOAD = "/uploadUpstreamData";
     private final String SERVER_API_ADD_VEHICLE = "/addVehicle";

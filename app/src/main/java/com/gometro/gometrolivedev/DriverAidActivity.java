@@ -5,12 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.IBinder;
@@ -30,11 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gometro.gometrolive.StreamPacketProtos;
 import com.gometro.gometrolive.StreamPacketProtos.StreamPacket.StreamData;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.mapbox.mapboxsdk.api.ILatLng;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.overlay.Icon;
@@ -47,7 +39,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -368,12 +359,6 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
                 upstreamService.streamContent(newLocation, statusValues, liveStream, streamId, driverId, vehicleId);
             }
-
-            /*//TODO: package update
-            StreamData upstreamDataPacket = constructUpstreamPacket(newLocation);
-
-            //TODO: upload stream data to server
-            uploadUpstreamData(upstreamDataPacket);*/
         }
         else
             Toast.makeText(this, "Attempting to locate you", Toast.LENGTH_LONG).show();
@@ -431,7 +416,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
 
     public void paintStops(JSONArray jsonStopsArray)
     {
-        //Remove shape if there was a pervious one painted on map
+        //Remove stops if there was a pervious ones painted on map
         if(stopsMarkerList != null)
         {
             mapView.removeMarkers(stopsMarkerList);
@@ -446,8 +431,32 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
                JSONObject stop = stopTime.getJSONObject("stopId");
 
                //Log.d(TAG, "Stop: " + stop.getString("stopName") + ", " + stop.getString("stopDesc") + ", " + stop.getDouble("stopLat") + ", " + stop.getDouble("stopLon"));
-               Marker stopMarker = new Marker(stop.getString("stopName"), stop.getString("stopDesc"), new LatLng(stop.getDouble("stopLat"), stop.getDouble("stopLon")));
-               stopMarker.setIcon(new Icon(getResources().getDrawable(R.drawable.ic_stop_marker)));
+
+               String stopName = stop.getString("stopName");
+               String stopDesc = stop.getString("stopDesc");
+               String stopArrivalTime = stopTime.getString("arrivalTime");
+               String stopDepartureTime = stopTime.getString("departureTime");
+               String stopSequence = stopTime.getInt("stopSequence") + "";
+               LatLng stopLocation = new LatLng(stop.getDouble("stopLat"), stop.getDouble("stopLon"));
+
+               //If description is null do not print null the literal
+               if(stopDesc == null || stopDesc.equalsIgnoreCase("null"))
+                   stopDesc = "";
+
+               //Add stop times to description
+               if(stopArrivalTime != null && !stopArrivalTime.equalsIgnoreCase("null"))
+                stopDesc = stopDesc + "\nArrival Time: " + stopArrivalTime;
+
+               if(stopDepartureTime != null && !stopDepartureTime.equalsIgnoreCase("null"))
+                   stopDesc = stopDesc + "\nDeparture Time: " + stopDepartureTime;
+
+               Marker stopMarker = new Marker(stopName, stopDesc, stopLocation);
+
+               //Add stop number / sequence to drawable
+               GraphicsHelper graphicHelp = new GraphicsHelper(context);
+               Drawable dynamicStopIcon =  graphicHelp.writeOnDrawable(R.drawable.ic_stop_marker, stopSequence, Color.BLACK, 20);
+               dynamicStopIcon = graphicHelp.scaleDrawable(dynamicStopIcon, 100, 100);
+               stopMarker.setIcon(new Icon(dynamicStopIcon));
 
                stopsMarkerList.add(stopMarker);
                mapView.addMarker(stopMarker);
@@ -455,7 +464,7 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
            catch(JSONException je)
            {
                 je.printStackTrace();
-               Log.e(TAG, "An JsonException occured whilst painting stops: " + je.getMessage());
+               Log.e(TAG, "An JsonException occurred whilst painting stops: " + je.getMessage());
            }
        }
     }
@@ -493,71 +502,6 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
             btnLiveStream.startAnimation(slideIn);
             txtvLiveStream.startAnimation(slideIn);
         }*/
-    }
-
-    //Display chosen trip on map
-    private void displayTrip()
-    {
-        /*//add test line
-            PathOverlay line = new PathOverlay(Color.BLUE, 3);
-            line.addPoint(-33.9035862,18.543525);
-            line.addPoint(-33.9195113, 18.5819035);
-
-            Paint linePaint = line.getPaint();
-
-            float[] intervals = {4.0f, 4.0f, 10.0f};
-            SafeDashPathEffect dashEffect = new SafeDashPathEffect(intervals, 5.0f, 4.5f);
-            linePaint.setPathEffect(dashEffect);
-
-            line.setPaint(linePaint);
-
-
-            mapView.getOverlays().add(line);*/
-    }
-
-    //Writes stream data to byte array and uploads to server
-    private void uploadUpstreamData(StreamData upstreamDataPacket)
-    {
-        if(upstreamDataPacket != null && upstreamDataPacket.isInitialized())
-        {
-            //Write data to byte array for upload
-            Log.i(TAG, "uploadUpstreamData: upstream data = " + upstreamDataPacket.toString());
-            byte[] upstreamBytes = upstreamDataPacket.toByteArray();
-            ByteArrayInputStream upstreamIS = new ByteArrayInputStream(upstreamBytes);
-
-            //Upload data to server
-            if (upstreamBytes != null)
-            {
-                //Send for upload to server
-                RequestParams params = new RequestParams();
-                //params.put("imei", "001Abc");
-                params.put("upstreamByteData", upstreamIS);
-
-                //Get url
-                SharedPreferences prefMang = PreferenceManager.getDefaultSharedPreferences(this);
-                String SERVER_ADDRESS = prefMang.getString("SERVER_ADDRESS", null);
-                String SERVER_API_UPLOAD = prefMang.getString("SERVER_API_UPLOAD", null);
-                Log.i(TAG, "URL: " + SERVER_ADDRESS + SERVER_API_UPLOAD);
-
-                AsyncHttpClient client = new AsyncHttpClient();
-                client.setTimeout(240 * 1000);
-                client.setUserAgent("android");
-                client.post(SERVER_ADDRESS + SERVER_API_UPLOAD, params,		//"http://192.168.8.102:9000" 192.168.0.29 home URL_BASE + API_UPLOAD for server (54.68.55.70)
-                            new AsyncHttpResponseHandler()
-                            {
-                                @Override
-                                public void onSuccess(String response)
-                                {
-                                    Log.i(TAG, "uploadUpstreamData: Packet successfully sent");
-                                }
-
-                                public void onFailure(Throwable error, String content)
-                                {
-                                    Log.e(TAG, "uploadUpstreamData: upload failed :(  " + error + " " + content);
-                                }
-                            });
-            }
-        }
     }
 
     //Constructs upstream data packet this includes location data and status data
@@ -664,31 +608,21 @@ public class DriverAidActivity extends AppCompatActivity implements MixedLocatio
         fLayMainContent.setVisibility(View.GONE);
     }
 
-    private void addStopMarker(LatLng location)
-    {
-
-    }
-
     private Drawable rotateToBearing(float bearing, int drawableResource)
     {
+        Drawable rotatedDrawable;
+
+        //Apply bearing threshold
         if(bearing < 10 || bearing > 350)
             bearing = 0;
 
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), drawableResource);
-        // Getting width & height of the given image.
-        int w = bmp.getWidth();
-        int h = bmp.getHeight();
-        // Setting post rotate to bearing
-        Matrix mtx = new Matrix();
-        mtx.postRotate(bearing);
-        // Rotating Bitmap
-        Bitmap rotatedBMP = Bitmap.createBitmap(bmp, 0, 0, w, h, mtx, true);
-        BitmapDrawable bmd = new BitmapDrawable(rotatedBMP);
+        GraphicsHelper graphicHelp = new GraphicsHelper(context);
+        rotatedDrawable = graphicHelp.rotateToDegrees(bearing, drawableResource);
 
         //Print bearing
 //        Toast.makeText(this, "Bearing: " + bearing, Toast.LENGTH_LONG).show();
 
-        return bmd;
+        return rotatedDrawable;
     }
 
 }

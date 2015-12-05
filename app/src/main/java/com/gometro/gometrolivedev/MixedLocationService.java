@@ -29,7 +29,7 @@ public class MixedLocationService extends Service implements MixedLocationInterf
 {
     //Const
     private final String TAG = "MixedLocService";
-    private int LOCATION_DISTANCE_INTERVAL = 10;   //Meters
+    private int LOCATION_DISTANCE_INTERVAL = 0;   //Meters
     private int LOCATION_TIME_INTERVAL = 5000; //Milli Sec
     private int LOCATION_FASTEST_TIME_INTERVAL = 2000; //Milli Sec
     private int LOCATION_PRIORITY = LocationRequest.PRIORITY_HIGH_ACCURACY;
